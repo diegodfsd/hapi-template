@@ -1,0 +1,64 @@
+'use strict';
+
+const Confidence = require('confidence');
+
+let criteria = {
+    env: process.env.NODE_ENV
+}
+
+let config = {
+    $meta: 'This file configures the application.',
+    projectName: '{{projectName}}',
+    auth: {
+        authAttempts: {
+            forIp: 50,
+            forUser: 5
+          },
+        tokenExpiration: {
+            $filter: 'env',
+            production: 1440,
+            $default: 60
+        },
+        secretKey: {
+            $filter: 'env',
+            production: '{{secretKey}}',
+            $default: 'abcdefghijklmnopqrstuvxyz1234567890'
+        }
+    },
+    port: {
+        web: {
+            $filter: 'env',
+            production: process.env.PORT,
+            $default: 3000
+        }
+    },
+    mongodb: {
+        $filter: 'env',
+        production: {
+            url: process.env.MONGODB_URL,
+            options: {
+                user: process.env.MONGODB_USER,
+                pass: process.env.MONGODB_PWD
+            }
+        },
+        test: {
+            url: '{{mongodbUrl}}-test',
+            options: {}
+        },
+        $default: {
+            url: '{{mongodbUrl}}',
+            options: {}
+        }
+    }
+};
+
+
+let store = new Confidence.Store(config);
+
+exports.get = function(key) {
+    return store.get(key, criteria);
+}
+
+exports.meta = function (key) {
+    return store.meta(key, criteria);
+};

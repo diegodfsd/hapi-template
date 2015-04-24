@@ -1,2 +1,2 @@
 # hapi-template
-A simple template to get started with hapi.js
+A simple REST API template to get started with hapi.js framework using MongoDB like database.
