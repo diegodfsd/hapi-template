@@ -10,7 +10,7 @@ const Dispatcher = require('./commandDispatcher'),
 function CommandBus () {
     this.handlers = {};
 
-    this.initialize = function() {
+    this.loadHandlers = function() {
 
         Fs.readdirSync(__dirname).forEach(function (file) {
 
@@ -21,7 +21,7 @@ function CommandBus () {
         });
     }
 
-    this.initialize();
+    this.loadHandlers();
 };
 
 CommandBus.getInstance = function(forceInitialize) {
