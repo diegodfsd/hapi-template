@@ -56,8 +56,7 @@ CommandBus.prototype.dispatch = function(commandName, attrs, done) {
 };
 
 
-module.exports = function (options) {
-    options = Lodash.merge({initialize: false}, options);
+module.exports = function (forceInitialize) {
 
-    return CommandBus.getInstance(options.initialize);
+    return CommandBus.getInstance(!!forceInitialize);
 }
