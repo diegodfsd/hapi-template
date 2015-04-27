@@ -9,6 +9,19 @@ let criteria = {
 let config = {
     $meta: 'This file configures the application.',
     projectName: '{{projectName}}',
+    server: {
+        $filter: 'env',
+        production: { port: process.env.PORT },
+        $default: { host: '0.0.0.0', port: 3000 },
+        routes: {
+            cors: true,
+            validate: {
+                    options: {
+                        abortEarly: false
+                }
+            }
+        }
+    },
     auth: {
         authAttempts: {
             forIp: 50,

@@ -1,7 +1,7 @@
 'use strict';
 
 const Mongoose = require('mongoose'),
-      Config = require('./../config');
+      Config = require('./../../config');
 
 
 let settings = Config.get('/mongodb'),
@@ -15,7 +15,7 @@ Mongoose.connection.on('connected', function () {
     console.log('Mongoose is connected to %s', settings.url);
 });
 
-mongMongooseoose.connection.on('error', function (err) {
+Mongoose.connection.on('error', function (err) {
     console.log('Mongoose connection: %s', err);
 });
 
@@ -29,3 +29,6 @@ process.on('SIGINT', function () {
         process.exit(0);
     });
 });
+
+
+module.exports = Mongoose;
