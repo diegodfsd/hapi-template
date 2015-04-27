@@ -1,7 +1,9 @@
 'use strict';
 
+// The next two lines allow using require with absolute path without using ./
 process.env.NODE_PATH = __dirname;
 require('module').Module._initPaths();
+
 
 const Hapi = require('hapi'),
       Db = require('src/lib/database'),
@@ -12,21 +14,20 @@ const Hapi = require('hapi'),
 
 
 let options = Config.get('/server');
-let port = Config.get('/port/web');
 
 let server = new Hapi.Server();
 server.connection(options);
 
 
-// Register all extensions/filters
+// Register all extensions/filters within the extensions folder
 Extensions.registerAll(server);
 
 
-// Register all plugins
+// Register all plugins within the plugins folder
 Plugins.registerAll(server);
 
 
-// Add all the routes within the routes folder
+// Register all the routes within the routes folder
 for (var route in Routes) {
 	server.route(Routes[route]);
 }
