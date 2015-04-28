@@ -9,7 +9,8 @@ let schema = {
     email: Joi.string().email().required(),
     role: Joi.string().allow('user', 'admin').default('user'),
     password: Joi.string().min(8),
-    password_confirmation: Joi.any().valid(Joi.ref('password')).required().options({ language: { any: { allowOnly: 'must match password' } } })
+    password_confirmation: Joi.any().valid(Joi.ref('password')).required().options({ language: { any: { allowOnly: 'must match password' } } }),
+    active: Joi.boolean().required()
 }
 
 function UserValidation() {}
@@ -30,7 +31,8 @@ UserValidation.prototype = {
             email: schema.email,
             role: schema.role,
             password: schema.password.required(),
-            password_confirmation: schema.password_confirmation
+            password_confirmation: schema.password_confirmation,
+            active: schema.active
         },
         headers: Joi.object({'authorization': Joi.string().required()}).unknown()
     },
@@ -41,8 +43,9 @@ UserValidation.prototype = {
         payload: {
             name: schema.name,
             email: schema.email,
-            role: schema.role,
-            password: schema.password.optional()
+            role: schema.role.required(),
+            password: schema.password.optional(),
+            active: schema.active
         },
         headers: Joi.object({'authorization': Joi.string().required()}).unknown()
     },

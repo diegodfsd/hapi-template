@@ -12,7 +12,7 @@ UsersController.prototype = {
     findById: function findById (request, reply) {
 
         let params = request.params;
-
+        console.log(params);
         UserQueries.findById(params.id, function (err, data) {
             reply.unique(err, data, 'User cannot be found.');
         });

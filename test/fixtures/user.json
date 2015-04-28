@@ -1,0 +1,35 @@
+[
+ {
+    "name":"User One",
+    "email":"user.one@example.org",
+    "hashed_password":"2492fdc9572cda64fb47cd7b9a7f18ec4a28a3e24f4af238bc251490d1ffbcaea23c1136f7626a077ce6d751780327206eaab750e3ce89469acfa906d79481cfd9fd4bc496f090a1056abd2a7efdbc8af2bd873c05a580d66ee396ad52958772dd60ab9f6ac750a855630afc99560b7b445ff296c72cbd0d8293bb4618eb002b",
+    "salt":"CNj2/MqvL+GzbvvW1YPd9f5Kp8PvAFMwOg56H6q3XI1pg2N/6L8Y6YpE1NaNlgJDelPk7oDPxjtkn5GIBVbFgHNeBrGuvzqmI3M+aeUii+nwRpD/vG1bDyhJK/UVfxDEW1QvNEI11BKs38OKfRQx7ugNCL3NpqSah/OhuWrnApo=",
+    "_id":"553816dae06f45a7222b16c4",
+    "updatedAt":"2015-04-22T21:47:06.568Z",
+    "createdAt":"2015-04-22T21:47:06Z",
+    "active":true,
+    "role":"user"
+ },
+ {
+    "name":"User Two",
+    "email":"user.two@example.org",
+    "hashed_password":"d759f8c682c2b957d3bdc2b3675bc921c580e435c17421dac6cf34c7ccd92847320e9c6a88846bf8f9a8ec3af543757cc97d979bcd467c275b9ac3ef5fb9e682f23fff580dd75758170b9f47639b8ef696e9349ee83faf247396900972b42c022bd145d01d7a783678fb1d20892de02288e92c07ac3478196f92a5aed02d2d74",
+    "salt":"bsLHxYnqybDsVxHXaRxC1UrryF+1/OhLOEr4IRdr3b26XsPvDtkgN5YnI6cmXccDVW5AxwTeoYfrRyH5nRz/HCSuNGQthgmQNxwWGJ3ce84KgQYVmf+x6VyeyNpRDb0CJruEFVJ6+lrLkiUlEYJEJ04oYee6pQwR0I6qGyDr2HQ=",
+    "_id":"553816e5e06f45a7222b16c5",
+    "updatedAt":"2015-04-22T21:47:17.376Z",
+    "createdAt":"2015-04-22T21:47:17Z",
+    "active":true,
+    "role":"user"
+ },
+ {
+    "name":"User Three",
+    "email":"user.three@example.org",
+    "hashed_password":"184729ecfef295ae27720150f9f81a38143752d5faadedc723fef0d6702c8ba27f15d40918e9ef49b477161fede3824e8d8ef20c17411d7a36adaac7fc4f73e8cecb71671d5c175352f31349ed1493d9cfbe42d99fb3da98fac427e30c1ba2147cd4991cafd681903e4b972dbcafd74f94c36f1296b723d0b881f911c7545c7e",
+    "salt":"NtbYQfs8GSdvL2qSGdr+DKr4NyuD8JA4bxiEz5tafmQnaXvICWOgYnirj71GodDDtNJ34FHNIyQmNzQay49mqSPIu/nZU7YvuQEEB+ryO+CYRLoaepn55HT0B2NJ7kLmQmTKjxR1/GLRkYz0b1ct4m7by2MnODALphfaVZsllDA=",
+    "_id":"553816f7e06f45a7222b16c6",
+    "updatedAt":"2015-04-22T21:47:35.637Z",
+    "createdAt":"2015-04-22T21:47:35Z",
+    "active":true,
+    "role":"admin"
+ }
+]

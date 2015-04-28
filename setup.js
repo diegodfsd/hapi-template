@@ -46,7 +46,12 @@ Async.auto({
         Async.waterfall([
             function connect (done) {
 
-                Mongoose.connect(results.mongodbUrl);
+                var url = results.mongodbUrl;
+                if( process.env.NODE_ENV === 'test') {
+                    url += '-test';
+                }
+
+                Mongoose.connect(url);
                 Mongoose.connection.on('connected', done);
             },
             function clean (done) {
