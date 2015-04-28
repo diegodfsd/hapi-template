@@ -7,7 +7,7 @@ exports.register = function (server) {
 
     server.ext('onPostAuth', function (request, reply) {
 
-        let patternMethod = /delete/i;
+        let patternMethod = /(delete|put)/i;
 
         if ( !patternMethod.test(request.method) ) {
             return reply.continue();
@@ -18,7 +18,7 @@ exports.register = function (server) {
         if (!roleFound) {
             var response = {
               error: 'Unauthorized access',
-              message: 'permission_denied_to_this_resource',
+              message: 'You don\'t have permission to do this operation',
               statusCode: 403
             };
 

@@ -12,6 +12,7 @@ module.exports = (function () {
                 config: {
                     description: 'Get user details',
                     tags: ['api'],
+                    auth: { strategy: 'jwtAuth' },
                     validate: userValidate.findById,
                     handler: userController.findById
                 }
@@ -22,7 +23,9 @@ module.exports = (function () {
                 config: {
                     description: 'List all users',
                     tags: ['api'],
-                    handler: userController.find
+                    auth: { strategy: 'jwtAuth' },
+                    handler: userController.find,
+                    validate: userValidate.find
                 }
             },
             {
@@ -31,6 +34,7 @@ module.exports = (function () {
                 config: {
                     description: 'Creates an user',
                     tags: ['api'],
+                    auth: false,
                     validate: userValidate.create,
                     handler: userController.create
                 }
@@ -41,6 +45,7 @@ module.exports = (function () {
                 config: {
                     description: 'Updates an user',
                     tags: ['api'],
+                    auth: { strategy: 'jwtAuth' },
                     validate: userValidate.update,
                     handler: userController.update
                 }
@@ -51,6 +56,7 @@ module.exports = (function () {
                 config: {
                     description: 'Delete an user',
                     tags: ['api'],
+                    auth: { strategy: 'jwtAuth' },
                     validate: userValidate.delete,
                     handler: userController.delete
                 }

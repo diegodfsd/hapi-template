@@ -52,7 +52,7 @@ User.methods = {
     },
 
     verifyPassword: function (password) {
-      return this.encryptPassword(password) === this.hashed_password;
+        return this.encryptPassword(password) === this.hashed_password;
     }
 };
 

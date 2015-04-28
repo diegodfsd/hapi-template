@@ -14,42 +14,45 @@ let schema = {
 
 function UserValidation() {}
 
-UserValidation.prototype = (function () {
+UserValidation.prototype = {
+    findById: {
+        params: {
+            id: schema.userId.required()
+        },
+        headers: Joi.object({'authorization': Joi.string().required()}).unknown()
+    },
+    find: {
+        headers: Joi.object({'authorization': Joi.string().required()}).unknown()
+    },
+    create: {
+        payload: {
+            name: schema.name,
+            email: schema.email,
+            role: schema.role,
+            password: schema.password.required(),
+            password_confirmation: schema.password_confirmation
+        },
+        headers: Joi.object({'authorization': Joi.string().required()}).unknown()
+    },
+    update: {
+        params: {
+            id: schema.userId.required()
+        },
+        payload: {
+            name: schema.name,
+            email: schema.email,
+            role: schema.role,
+            password: schema.password.optional()
+        },
+        headers: Joi.object({'authorization': Joi.string().required()}).unknown()
+    },
+    delete: {
+        params: {
+            id: schema.userId.required()
+        },
+        headers: Joi.object({'authorization': Joi.string().required()}).unknown()
+    }
+};
 
-    return {
-            findById: {
-                params: {
-                    id: schema.userId.required()
-                }
-            },
-            create: {
-                payload: {
-                    name: schema.name,
-                    email: schema.email,
-                    role: schema.role,
-                    password: schema.password.required(),
-                    password_confirmation: schema.password_confirmation
-                }
-            },
-            update: {
-                params: {
-                    id: schema.userId.required()
-                },
-                payload: {
-                    name: schema.name,
-                    email: schema.email,
-                    role: schema.role,
-                    password: schema.password.optional(),
-                    password_confirmation: schema.password_confirmation
-                }
-            },
-            delete: {
-                params: {
-                    id: schema.userId.required()
-                }
-            }
-        };
-})();
 
-
-module.exports = (new UserValidation());
+module.exports = new UserValidation();

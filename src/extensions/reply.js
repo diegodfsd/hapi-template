@@ -35,10 +35,21 @@ exports.register = function (server) {
         return this(data).code(200);
     });
 
+    server.decorate('reply', 'noContent', function (data) {
+
+        return this().code(204);
+    });
+
+    server.decorate('reply', 'success', function (data, message) {
+
+        if (data) this(data).type('application/json').code(200);
+        else this(Boom.notFound(message ? message : undefined));
+    });
+
     server.decorate('reply', 'unique', function (err, data, message) {
         if (err) return this(Boom.badImplementation(err));
 
-        if (data) this(data).type('application/json');
+        if (data) this(data).type('application/json').code(200);
         else this(Boom.notFound(message ? message : undefined));
     });
 

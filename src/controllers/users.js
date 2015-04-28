@@ -2,47 +2,56 @@
 
 const Boom = require('boom'),
       Commands = require('src/commands'),
-      UserQueries = require('src/queries').users;
+      UserQueries = require('src/queries').users,
+      Lodash = require('lodash/object');
 
 
 function UsersController() {};
 
-UsersController.prototype = (function () {
+UsersController.prototype = {
+    findById: function findById (request, reply) {
 
-  return {
-            findById: function findById (request, reply) {
+        let params = request.params;
 
-                let params = request.params;
+        UserQueries.findById(params.id, function (err, data) {
+            reply.unique(err, data, 'User cannot be found.');
+        });
+    },
+    find: function find (request, reply) {
 
-                UserQueries.findById(params.id, function (err, data) {
-                    reply.unique(err, data, 'User cannot be found.');
-                });
-            },
-            find: function find (request, reply) {
+        UserQueries.find(request.query, function (err, data) {
+            reply.paginate(err, data);
+        });
+    },
+    create: function create (request, reply) {
 
-                UserQueries.find(request.query, function (err, data) {
-                    reply.paginate(err, data);
-                });
-            },
-            create: function create (request, reply) {
+        Commands.createUser(request.payload).then(function (data) {
 
-                Commands.createUser(request.payload).then(function (data) {
+            reply.created(data);
+        }).catch(function (err) {
+            reply.badRequest(err);
+        });
+    },
+    update: function update (request, reply) {
+        let params = Lodash.merge(request.params, request.payload);
 
-                    reply.created(data);
-                }).catch(function (err) {
-                    reply.badRequest(err);
-                });
-            },
-            update: function update (request, reply) {
+        Commands.updateUser(params).then(function (data) {
 
-                return reply.ok({});
-            },
-            delete: function (request, reply) {
+            reply.noContent();
+        }).catch(function (err) {
+            reply.badRequest(err);
+        });
+    },
+    delete: function (request, reply) {
 
-                return reply.ok({});
-            }
-        };
-})();
+        Commands.deleteUser(request.params.id).then(function (data) {
+
+            reply.noContent();
+        }).catch(function (err) {
+            reply.badRequest(err);
+        });
+    }
+};
 
 
-module.exports = (new UsersController());
+module.exports = new UsersController();

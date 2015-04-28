@@ -27,7 +27,7 @@ Extensions.registerAll(server);
 Plugins.registerAll(server);
 
 
-// Register all the routes within the routes folder
+// Register all routes within the routes folder
 for (var route in Routes) {
 	server.route(Routes[route]);
 }
